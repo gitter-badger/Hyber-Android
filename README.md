@@ -4,7 +4,7 @@ To use, add this github repo as a repository:
 ```java
 repositories {
   maven {
-        url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-TEST-REPO/master/releases/'
+        url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/master/releases/'
     }
 }
 ```
