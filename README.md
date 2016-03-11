@@ -1,7 +1,7 @@
 # Install the SDK
 
 To use, add this github repo as a repository:
-```java
+```groovy
 repositories {
   maven {
         url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/master/releases/'
@@ -10,14 +10,18 @@ repositories {
 ```
 
 Then add the next dependencies to project:
-```java
-dependencies {
-  compile 'com.gms_worldwide:boxappsdk:0.1.0'
-  //The next lines are required for compatibility.
-  compile 'com.google.android.gms:play-services-gcm:8.4.0'
-  compile 'io.reactivex:rxandroid:1.0.1'
-}
+```groovy
+    compile 'com.gms_worldwide:boxappsdk:0.1.0'
+    //The next lines are required for compatibility.
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.1.0'
 ```
+
+* RxAndroid: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxandroid'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxandroid.svg'></a>
+* RxJava: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxjava'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxjava.svg'></a>
 
 # Connect your app to GMS BoxApp SDK
 
@@ -189,19 +193,31 @@ BoxApp.getMessageHelper().checkNewViberMessagesFromCloud()
                                              */ },
                         Throwable::printStackTrace);
 ```
-### How to get keys, push-notifications, IDs
 
-#### GlobalMessageService application key
-Contact [Global Message Services](http://www.gms-worldwide.com/en/kontakty.html)
+## How to registration app powered by GMSBox SDK
 
+- Register your app in [Google Developers Console][GoogleDevelopersConsoleHelp]
+- Register new client in [Global Message Services][GlobalMessageServices]
+- Enable Google services for your project [Google services console][GoogleServicesConsole]</br>(Be sure to include Cloud Messaging)
 
-#### Google Cloud Messaging (push-notifications)
-[Enable Google Cloud Messaging API](https://console.developers.google.com/apis/api/googlecloudmessaging/) for you project
-
-[Enable Google services](https://developers.google.com/mobile/add?platform=ios) for your app
 
 #### Google Cloud Messaging Sender ID
-Google Cloud Messaging Sender ID is your Project number that you can get in [Google Developer Console](https://console.developers.google.com/)
+
+Google Cloud Messaging Sender ID is your Project number.</br>
+<img src="project_id_and_number.png" width="500" height=""/></br>
+That can be found in the [Google Developers Console Dashboard][GoogleDevelopersConsoleDashboard].
+
+## Bugs and Feedback
+
+For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 
 ### License
-[MIT](https://github.com/GlobalMessageServicesAG/GMSBox-SDK-TEST-REPO/blob/master/LICENSE)
+
+[MIT][LICENSE]
+
+[GlobalMessageServices]: http://www.gms-worldwide.com/en/kontakty.html
+[GoogleDevelopersConsoleHelp]: https://support.google.com/cloud/answer/6158853
+[GoogleServicesConsole]: https://developers.google.com/mobile/add
+[GoogleDevelopersConsoleDashboard]: https://console.developers.google.com/home/dashboard
+[LICENSE]: LICENSE
+[issues]: https://github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/issues
