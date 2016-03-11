@@ -2,11 +2,11 @@
 
 To use, add this github repo as a repository:
 ```groovy
-repositories {
-  maven {
-        url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/master/releases/'
+    repositories {
+        maven {
+            url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/master/releases/'
+        }
     }
-}
 ```
 
 Then add the next dependencies to project:
@@ -36,9 +36,9 @@ Call BoxApp.initialize from the onCreate method of your Application class.
 In this method you will also create an Installation object:
 
 ```java
-public void onCreate() {
-    BoxApp.initialize(this);
-}
+    public void onCreate() {
+        BoxApp.initialize(this);
+    }
 ```
 
 Set up your project id and client key in `AndroidManifest.xml` like `<meta-data>`:
@@ -224,4 +224,4 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [GoogleServicesConsole]: https://developers.google.com/mobile/add
 [GoogleDevelopersConsoleDashboard]: https://console.developers.google.com/home/dashboard
 [LICENSE]: LICENSE
-[issues]: https://github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/issues
+[issues]: /issues
