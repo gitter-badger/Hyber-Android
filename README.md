@@ -12,8 +12,15 @@ repositories {
 Then add the next dependencies to project:
 ```groovy
     compile 'com.gms_worldwide:boxappsdk:0.1.0'
-    //The next lines are required for compatibility.
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
+```
+
+*SDK is built on the RxJava framework, and if you want to get the data, you must subscribe to the observable.
+Do not forget to unsubscribe when you do not need a subscription, this is to prevent memory leaks in your application.
+[Read more about RxJava](http://reactivex.io/)*
+
+Add the next lines for Rx compatibility:
+```groovy
     compile 'io.reactivex:rxandroid:1.1.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
@@ -119,10 +126,6 @@ Change the `android:name` attribute in the last two lines of the snippet above t
 
 # Getting Started
 
-*SDK is built on the RxJava framework, and if you want to get the data, you must subscribe to the observable.
-Do not forget to unsubscribe when you do not need a subscription, this is to prevent memory leaks in your application.
-[Read more about RxJava](http://reactivex.io/)*
-
 To SDK could take SMS messages, you must specify the alpha names with which you want to receive messages.
 
 ```java
@@ -197,14 +200,15 @@ BoxApp.getMessageHelper().checkNewViberMessagesFromCloud()
 ## How to registration app powered by GMSBox SDK
 
 - Register your app in [Google Developers Console][GoogleDevelopersConsoleHelp]
+- Enable Google services for your project [Google services console][GoogleServicesConsole]
+(Be sure to include Cloud Messaging)
 - Register new client in [Global Message Services][GlobalMessageServices]
-- Enable Google services for your project [Google services console][GoogleServicesConsole]</br>(Be sure to include Cloud Messaging)
 
 
-#### Google Cloud Messaging Sender ID
+#### What is Sender ID
 
 Google Cloud Messaging Sender ID is your Project number.</br>
-<img src="project_id_and_number.png" width="500" height=""/></br>
+<img src="project_id_and_number.png" width="700" height=""/></br>
 That can be found in the [Google Developers Console Dashboard][GoogleDevelopersConsoleDashboard].
 
 ## Bugs and Feedback
