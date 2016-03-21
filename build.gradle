@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.1.0"
+version = "0.9.1-SNAPSHOT"
 
 def isReleaseBuild() {
     return version.toString().contains("SNAPSHOT") == false
@@ -30,7 +30,7 @@ android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact bundleRelease
+            artifact "build/outputs/aar/boxappsdk-release.aar"
             artifactId = "boxappsdk"
             groupId = "com.gms_worldwide"
             version = version.toString()
