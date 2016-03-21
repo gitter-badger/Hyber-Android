@@ -5,5 +5,5 @@
   <groupId>com.gms_worldwide</groupId>
   <artifactId>boxappsdk</artifactId>
   <version>0.9.0</version>
-  <packaging>aar</packaging>
+  <packaging>pom</packaging>
 </project>
