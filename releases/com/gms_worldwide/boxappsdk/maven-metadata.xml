@@ -3,11 +3,12 @@
   <groupId>com.gms_worldwide</groupId>
   <artifactId>boxappsdk</artifactId>
   <versioning>
-    <release>0.9.0</release>
+    <release>0.9.1</release>
     <versions>
       <version>0.1.0</version>
       <version>0.9.0</version>
+      <version>0.9.1</version>
     </versions>
-    <lastUpdated>20160321092330</lastUpdated>
+    <lastUpdated>20160321110802</lastUpdated>
   </versioning>
 </metadata>
