@@ -30,7 +30,7 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application -- change to something appropriate for your app
     private static final String DATABASE_NAME = "BoxAppSDKStorage.db";
     // any time you make changes to your database objects, you may have to increase the database version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // the DAO object we use to access the BoxAppMessageDBModel table
     private Dao<BoxAppMessageDBModel, Integer> messageDao = null;
@@ -326,6 +326,40 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
             BoxAppMessageDBModel messageDBModel = getMessageDao().queryForId(id);
             if (messageDBModel != null) {
                 messageDBModel.setDeleted(true);
+            }
+            getMessageDao().update(messageDBModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Set message is read.
+     *
+     * @param id the id
+     */
+    public void setReadMessage(int id) {
+        try {
+            BoxAppMessageDBModel messageDBModel = getMessageDao().queryForId(id);
+            if (messageDBModel != null) {
+                messageDBModel.setRead(true);
+            }
+            getMessageDao().update(messageDBModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Set message is read.
+     *
+     * @param id the id
+     */
+    public void setUnReadMessage(int id) {
+        try {
+            BoxAppMessageDBModel messageDBModel = getMessageDao().queryForId(id);
+            if (messageDBModel != null) {
+                messageDBModel.setRead(false);
             }
             getMessageDao().update(messageDBModel);
         } catch (SQLException e) {

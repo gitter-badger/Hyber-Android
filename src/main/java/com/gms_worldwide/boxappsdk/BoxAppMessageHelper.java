@@ -196,6 +196,24 @@ public class BoxAppMessageHelper {
     }
 
     /**
+     * This method mark message as read
+     *
+     * @param id message id in database.
+     */
+    public void makeAsReadMessage(int id){
+        BoxAppPlugins.get().getDatabaseHelper().setReadMessage(id);
+    }
+
+    /**
+     * This method mark message as unread
+     *
+     * @param id message id in database.
+     */
+    public void makeAsUnReadMessage(int id){
+        BoxAppPlugins.get().getDatabaseHelper().setUnReadMessage(id);
+    }
+
+    /**
      * Delete all messages with 'makeAsDeleted' marker.
      */
     public void clearDeletedMessages(){
