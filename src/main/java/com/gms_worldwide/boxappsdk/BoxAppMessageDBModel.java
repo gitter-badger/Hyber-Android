@@ -32,6 +32,8 @@ class BoxAppMessageDBModel implements Serializable {
     private String owner;
     @DatabaseField
     private boolean deleted;
+    @DatabaseField
+    private boolean isRead;
 
     /**
      * Instantiates a new Box app message db model.
@@ -56,6 +58,7 @@ class BoxAppMessageDBModel implements Serializable {
         this.type = type;
         this.owner = owner;
         this.deleted = false;
+        this.isRead = false;
     }
 
     /**
@@ -65,6 +68,15 @@ class BoxAppMessageDBModel implements Serializable {
      */
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    /**
+     * Sets is read .
+     *
+     * @param isRead the read
+     */
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
     /**
@@ -137,5 +149,14 @@ class BoxAppMessageDBModel implements Serializable {
      */
     public boolean isDeleted() {
         return deleted;
+    }
+
+    /**
+     * Is read boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isRead() {
+        return isRead;
     }
 }
