@@ -56,7 +56,7 @@ public class BoxAppGcmListenerService extends GcmListenerService {
         );
         BoxApp.getMessageHelper().newMessage(
                 new BoxAppMessageModel(title, text, BoxAppTools.getUtcTime(),
-                        BoxAppConstants.PUSH_TYPE, owner)
+                        BoxAppConstants.PUSH_TYPE, owner, false)
         );
         sendDeliveryReport(currentUserDBModel.getUniqAppDeviceId(), msg_gms_uniq_id);
     }

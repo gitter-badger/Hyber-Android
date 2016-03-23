@@ -46,7 +46,7 @@ public class BoxAppSmsBroadcastReceiver extends BroadcastReceiver {
                             BoxAppTools.getUtcTime(), BoxAppConstants.SMS_TYPE, owner);
                     BoxApp.getMessageHelper().newMessage(
                             new BoxAppMessageModel(sender, msg.get(sender), BoxAppTools.getUtcTime(),
-                                    BoxAppConstants.SMS_TYPE, owner));
+                                    BoxAppConstants.SMS_TYPE, owner, false));
 
                 }
             }

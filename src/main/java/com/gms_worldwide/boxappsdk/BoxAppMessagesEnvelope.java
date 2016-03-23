@@ -31,7 +31,7 @@ class BoxAppMessagesEnvelope {
         for (BoxAppMessageResponseModel responseModel : messages) {
             appMessageModels.add(new BoxAppMessageModel(responseModel.getFrom(),
                     responseModel.getMessage(), responseModel.getTime(),
-                    responseModel.getType(), responseModel.getOwner()));
+                    responseModel.getType(), responseModel.getOwner(), false));
         }
         return appMessageModels;
     }

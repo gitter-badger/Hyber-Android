@@ -11,6 +11,7 @@ public class BoxAppMessageModel {
     private long time;
     private int type;
     private String owner;
+    private boolean isRead;
 
     /**
      * Instantiates a new Box app message model.
@@ -24,6 +25,7 @@ public class BoxAppMessageModel {
         this.time = messageDBModel.getTime();
         this.type = messageDBModel.getType();
         this.owner = messageDBModel.getOwner();
+        this.isRead = messageDBModel.isRead();
     }
 
     /**
@@ -35,12 +37,13 @@ public class BoxAppMessageModel {
      * @param type    the type
      * @param owner   the owner
      */
-    public BoxAppMessageModel(String from, String message, long time, int type, String owner) {
+    public BoxAppMessageModel(String from, String message, long time, int type, String owner, boolean isRead) {
         this.from = from;
         this.message = message;
         this.time = time;
         this.type = type;
         this.owner = owner;
+        this.isRead = isRead;
     }
 
     /**
@@ -86,6 +89,15 @@ public class BoxAppMessageModel {
      */
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    /**
+     * Sets owner.
+     *
+     * @param isRead set false if message is unread else set true
+     */
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
     /**
@@ -140,6 +152,15 @@ public class BoxAppMessageModel {
      */
     public String getOwner() {
         return owner;
+    }
+
+    /**
+     * Gets owner.
+     *
+     * @return the owner
+     */
+    public boolean isRead() {
+        return isRead;
     }
 
     /**
