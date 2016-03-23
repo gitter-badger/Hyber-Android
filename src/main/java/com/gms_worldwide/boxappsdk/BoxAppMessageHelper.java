@@ -213,6 +213,10 @@ public class BoxAppMessageHelper {
         BoxAppPlugins.get().getDatabaseHelper().setUnReadMessage(id);
     }
 
+    public List<BoxAppMessageModel> getUnReadMessages() {
+        return BoxAppPlugins.get().getDatabaseHelper().getUnReadMessages();
+    }
+
     /**
      * Delete all messages with 'makeAsDeleted' marker.
      */

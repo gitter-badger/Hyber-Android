@@ -316,6 +316,23 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
         return boxAppMessageModels;
     }
 
+    public List<BoxAppMessageModel> getUnReadMessages() {
+        List<BoxAppMessageModel> boxAppMessageModels = new ArrayList<>();
+        try {
+            QueryBuilder<BoxAppMessageDBModel, Integer> queryBuilder = getMessageDao().queryBuilder();
+            queryBuilder.orderBy("time", false);
+            queryBuilder.where().eq("isRead", false);
+
+            List<BoxAppMessageDBModel> messageDBModels = queryBuilder.query();
+            for (BoxAppMessageDBModel dbModel : messageDBModels) {
+                boxAppMessageModels.add(new BoxAppMessageModel(dbModel));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return boxAppMessageModels;
+    }
+
     /**
      * Delete message.
      *
