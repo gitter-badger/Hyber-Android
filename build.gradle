@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.3"
+version = "0.9.51-SNAPSHOT"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")

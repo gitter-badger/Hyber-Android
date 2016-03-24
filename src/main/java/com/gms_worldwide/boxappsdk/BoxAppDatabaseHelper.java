@@ -278,9 +278,9 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
             QueryBuilder<BoxAppMessageDBModel, Integer> queryBuilder = getMessageDao().queryBuilder();
             queryBuilder.orderBy("time", false);
             queryBuilder.where()
-                    .between("time", dateFrom, dateTo)
-                    .and().in("type", types)
-                    .and().eq("deleted", false);
+                    .eq("deleted", false)
+                    .and().between("time", dateFrom, dateTo)
+                    .and().in("type", types);
 
             List<BoxAppMessageDBModel> messageDBModels = queryBuilder.query();
             for (BoxAppMessageDBModel dbModel : messageDBModels) {

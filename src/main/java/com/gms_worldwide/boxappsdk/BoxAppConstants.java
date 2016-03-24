@@ -16,7 +16,7 @@ class BoxAppConstants {
     /**
      * The constant OTT_URL_PATH.
      */
-    public static final String OTT_URL_PATH = "OTTBulkPlatform/ott/sdk_api/";
+    public static final String OTT_URL_PATH = "OTTBulkDr/ott/sdk_api/";
 
     /**
      * The constant CurrentUserIdInDb.
