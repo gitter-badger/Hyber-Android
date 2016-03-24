@@ -94,6 +94,16 @@ class BoxAppApiClient {
         Observable<Void> deliveryReportObservable(@Body Object o);
 
         /**
+         * Gets messages observable.
+         *
+         * @param channel                    the channel
+         * @param boxAppMessagesRequestModel the box app messages request model
+         * @return the messages observable
+         */
+        @POST(BoxAppConstants.OTT_URL_PATH + "requestMessages/{channel}")
+        Observable<BoxAppMessagesEnvelope> getMessagesObservable(@Path("channel") String channel, @Body BoxAppMessagesRequestModel boxAppMessagesRequestModel);
+
+        /**
          * Add abonent observable observable.
          *
          * @param o the o
@@ -155,16 +165,6 @@ class BoxAppApiClient {
          */
         @POST (BoxAppConstants.MAIN_URL_PATH + "get_profile")
         Observable<UserProfileResponseModel> getUserProfileObservable(@Body Object o);
-
-        /**
-         * Gets messages observable.
-         *
-         * @param channel                    the channel
-         * @param boxAppMessagesRequestModel the box app messages request model
-         * @return the messages observable
-         */
-        @POST(BoxAppConstants.OTT_URL_PATH + "requestMessages/{channel}")
-        Observable<BoxAppMessagesEnvelope> getMessagesObservable(@Path("channel") String channel, @Body BoxAppMessagesRequestModel boxAppMessagesRequestModel);
 
     }
 
