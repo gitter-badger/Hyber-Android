@@ -84,7 +84,8 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
         BoxAppMessageDBModel messageDBModel =
                 new BoxAppMessageDBModel(from, message, time, type, owner);
         getMessageDao().create(messageDBModel);
-        return getMessageDao().queryBuilder().where().eq("time", time).queryForFirst().getId();
+        //int id = getMessageDao().queryBuilder().where().eq("time", time).queryForFirst().getId();
+        return messageDBModel.getId();//id > 0 ? id : -1;
     }
 
     /**
