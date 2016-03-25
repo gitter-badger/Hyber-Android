@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,28 +29,31 @@ public class BoxAppSmsBroadcastReceiver extends BroadcastReceiver {
         /**
          * Tested with max sms length == 2001 characters
          */
+        try {
+            if (BoxApp.getUserHelper().isUserLogin() && msg != null) {
+                BoxAppCurrentUserDBModel currentUserDBModel =
+                        BoxAppPlugins.get().getDatabaseHelper().getCurrentUser();
+                // send all SMS via XMPP by sender
+                for (String sender : msg.keySet()) {
+                    if (BoxAppPlugins.get().getDatabaseHelper().isAlphaNameValid(sender)) {
+                        //this will update the UI with message
+                        String owner = "";
+                        if (currentUserDBModel.getPhone() > 0) {
+                            owner = String.valueOf(currentUserDBModel.getPhone());
+                        } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()){
+                            owner = currentUserDBModel.getEmail();
+                        }
+                        int id = BoxAppPlugins.get().getDatabaseHelper().saveIncomingMessage(sender, msg.get(sender),
+                                BoxAppTools.getUtcTime(), BoxAppConstants.SMS_TYPE, owner);
+                        BoxApp.getMessageHelper().newMessage(
+                                new BoxAppMessageModel(id, sender, msg.get(sender), BoxAppTools.getUtcTime(),
+                                        BoxAppConstants.SMS_TYPE, owner, false));
 
-        if (BoxApp.getUserHelper().isUserLogin() && msg != null) {
-            BoxAppCurrentUserDBModel currentUserDBModel =
-                    BoxAppPlugins.get().getDatabaseHelper().getCurrentUser();
-            // send all SMS via XMPP by sender
-            for (String sender : msg.keySet()) {
-                if (BoxAppPlugins.get().getDatabaseHelper().isAlphaNameValid(sender)) {
-                    //this will update the UI with message
-                    String owner = "";
-                    if (currentUserDBModel.getPhone() > 0) {
-                        owner = String.valueOf(currentUserDBModel.getPhone());
-                    } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()){
-                        owner = currentUserDBModel.getEmail();
                     }
-                    BoxAppPlugins.get().getDatabaseHelper().saveIncomingMessage(sender, msg.get(sender),
-                            BoxAppTools.getUtcTime(), BoxAppConstants.SMS_TYPE, owner);
-                    BoxApp.getMessageHelper().newMessage(
-                            new BoxAppMessageModel(sender, msg.get(sender), BoxAppTools.getUtcTime(),
-                                    BoxAppConstants.SMS_TYPE, owner, false));
-
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

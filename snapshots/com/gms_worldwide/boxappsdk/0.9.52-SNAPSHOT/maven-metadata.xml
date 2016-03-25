@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.gms_worldwide</groupId>
+  <artifactId>boxappsdk</artifactId>
+  <version>0.9.52-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20160325.082752</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20160325082752</lastUpdated>
+  </versioning>
+</metadata>

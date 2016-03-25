@@ -29,7 +29,7 @@ class BoxAppMessagesEnvelope {
     public List<BoxAppMessageModel> getMessages() {
         List<BoxAppMessageModel> appMessageModels = new ArrayList<>();
         for (BoxAppMessageResponseModel responseModel : messages) {
-            appMessageModels.add(new BoxAppMessageModel(responseModel.getFrom(),
+            appMessageModels.add(new BoxAppMessageModel(responseModel.getId(), responseModel.getFrom(),
                     responseModel.getMessage(), responseModel.getTime(),
                     responseModel.getType(), responseModel.getOwner(), false));
         }
