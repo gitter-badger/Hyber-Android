@@ -83,7 +83,8 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
     public int saveIncomingMessage(String from, String message, long time, int type, String owner) throws SQLException {
         BoxAppMessageDBModel messageDBModel =
                 new BoxAppMessageDBModel(from, message, time, type, owner);
-        return getMessageDao().create(messageDBModel);
+        getMessageDao().create(messageDBModel);
+        return getMessageDao().queryBuilder().where().eq("time", time).queryForFirst().getId();
     }
 
     /**
