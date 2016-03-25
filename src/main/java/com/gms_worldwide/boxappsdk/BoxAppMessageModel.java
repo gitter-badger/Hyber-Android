@@ -38,6 +38,7 @@ public class BoxAppMessageModel {
      * @param owner   the owner
      */
     public BoxAppMessageModel(int id, String from, String message, long time, int type, String owner, boolean isRead) {
+        this.id = id;
         this.from = from;
         this.message = message;
         this.time = time;
