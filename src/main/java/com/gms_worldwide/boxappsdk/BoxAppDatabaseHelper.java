@@ -80,13 +80,12 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
      * @param type    the type
      * @param owner   the owner
      */
-    public void saveIncomingMessage(String from, String message, long time, int type, String owner) {
-        // here we try inserting data in the on-create as a test
-        RuntimeExceptionDao<BoxAppMessageDBModel, Integer> dao = getMessageDataDao();
-
+    public int saveIncomingMessage(String from, String message, long time, int type, String owner) throws SQLException {
         BoxAppMessageDBModel messageDBModel =
                 new BoxAppMessageDBModel(from, message, time, type, owner);
-        dao.create(messageDBModel);
+        getMessageDao().create(messageDBModel);
+        //int id = getMessageDao().queryBuilder().where().eq("time", time).queryForFirst().getId();
+        return messageDBModel.getId();//id > 0 ? id : -1;
     }
 
     /**

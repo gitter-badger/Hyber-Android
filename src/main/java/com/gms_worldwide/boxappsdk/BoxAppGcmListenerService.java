@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.gms.gcm.GcmListenerService;
 
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import rx.Subscriber;
@@ -50,15 +51,19 @@ public class BoxAppGcmListenerService extends GcmListenerService {
         } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()){
             owner = currentUserDBModel.getEmail();
         }
-        BoxAppPlugins.get().getDatabaseHelper().saveIncomingMessage(
-                title, text, BoxAppTools.getUtcTime(),
-                BoxAppConstants.PUSH_TYPE, owner
-        );
-        BoxApp.getMessageHelper().newMessage(
-                new BoxAppMessageModel(title, text, BoxAppTools.getUtcTime(),
-                        BoxAppConstants.PUSH_TYPE, owner, false)
-        );
-        sendDeliveryReport(currentUserDBModel.getUniqAppDeviceId(), msg_gms_uniq_id);
+        try {
+            int id = BoxAppPlugins.get().getDatabaseHelper().saveIncomingMessage(
+                    title, text, BoxAppTools.getUtcTime(),
+                    BoxAppConstants.PUSH_TYPE, owner
+            );
+            BoxApp.getMessageHelper().newMessage(
+                    new BoxAppMessageModel(id, title, text, BoxAppTools.getUtcTime(),
+                            BoxAppConstants.PUSH_TYPE, owner, false)
+            );
+            sendDeliveryReport(currentUserDBModel.getUniqAppDeviceId(), msg_gms_uniq_id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void sendDeliveryReport(long getUniqAppDeviceId, long msg_gms_uniq_id) {

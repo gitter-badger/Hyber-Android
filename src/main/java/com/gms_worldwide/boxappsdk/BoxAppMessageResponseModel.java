@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class BoxAppMessageResponseModel {
 
-    private long id;
+    private int id;
     private String from;
     private String message;
     @SerializedName("deliveredDate")
@@ -83,7 +83,7 @@ public class BoxAppMessageResponseModel {
      *
      * @return the id
      */
-    public long getId() {
+    public int getId() {
         return id;
     }
 
