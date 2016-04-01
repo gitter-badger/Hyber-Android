@@ -8,6 +8,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -349,6 +350,18 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    public void unDeleteMessage(int id) {
+        try {
+            BoxAppMessageDBModel messageDBModel = getMessageDao().queryForId(id);
+            if (messageDBModel != null) {
+                messageDBModel.setDeleted(false);
+            }
+            getMessageDao().update(messageDBModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Set message is read.
      *
@@ -361,6 +374,22 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
                 messageDBModel.setRead(true);
             }
             getMessageDao().update(messageDBModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Set all messages is read.
+     *
+     */
+    public void setReadForAllMessages() {
+        try {
+            UpdateBuilder<BoxAppMessageDBModel, Integer> updateBuilder =
+                    getMessageDao().updateBuilder();
+            updateBuilder.updateColumnValue("isRead", true);
+            updateBuilder.where().eq("isRead", false);
+            updateBuilder.update();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -122,6 +122,7 @@ public class BoxAppMessageHelper {
      *
      * @param isOn if true, your subscribers relieve messages of this type.
      */
+    @Deprecated
     public void setPushFilter(boolean isOn) {
         updateFilter(MessageType.PUSH, isOn);
     }
@@ -131,6 +132,7 @@ public class BoxAppMessageHelper {
      *
      * @param isOn if true, your subscribers relieve messages of this type.
      */
+    @Deprecated
     public void setViberFilter(boolean isOn) {
         updateFilter(MessageType.VIBER, isOn);
     }
@@ -140,6 +142,7 @@ public class BoxAppMessageHelper {
      *
      * @param isOn if true, your subscribers relieve messages of this type.
      */
+    @Deprecated
     public void setSmsFilter(boolean isOn) {
         updateFilter(MessageType.SMS, isOn);
     }
@@ -149,6 +152,7 @@ public class BoxAppMessageHelper {
      *
      * @return the push filter status
      */
+    @Deprecated
     public boolean getPushFilterStatus() {
         return getFilterStatus(MessageType.PUSH);
     }
@@ -158,6 +162,7 @@ public class BoxAppMessageHelper {
      *
      * @return the viber filter status
      */
+    @Deprecated
     public boolean getViberFilterStatus() {
         return getFilterStatus(MessageType.VIBER);
     }
@@ -167,17 +172,18 @@ public class BoxAppMessageHelper {
      *
      * @return the sms filter status
      */
+    @Deprecated
     public boolean getSmsFilterStatus() {
         return getFilterStatus(MessageType.SMS);
     }
 
-    private boolean getFilterStatus(MessageType type) {
+    public boolean getFilterStatus(MessageType type) {
         if (filterMessage.containsKey(type))
             return filterMessage.get(type);
         return false;
     }
 
-    private void updateFilter(MessageType type, boolean isOn) {
+    public void updateFilter(MessageType type, boolean isOn) {
         if (filterMessage.containsKey(type)){
             filterMessage.remove(type);
         }
@@ -191,6 +197,7 @@ public class BoxAppMessageHelper {
      *
      * @param id message id in database.
      */
+    @Deprecated
     public void makeAsDeletedMessage(int id){
         BoxAppPlugins.get().getDatabaseHelper().deleteMessage(id);
     }
@@ -200,6 +207,7 @@ public class BoxAppMessageHelper {
      *
      * @param id message id in database.
      */
+    @Deprecated
     public void makeAsReadMessage(int id){
         BoxAppPlugins.get().getDatabaseHelper().setReadMessage(id);
     }
@@ -209,8 +217,41 @@ public class BoxAppMessageHelper {
      *
      * @param id message id in database.
      */
+    @Deprecated
     public void makeAsUnReadMessage(int id){
         BoxAppPlugins.get().getDatabaseHelper().setUnReadMessage(id);
+    }
+
+    /**
+     * Use this method to control which messages have been read by user.
+     *
+     * @param messageId message id in database.
+     * @param status true if message is read, false to set message us unread
+     *               (false status as default for all incoming messages)
+     */
+    public void chengeReadMessageStatus(int messageId, boolean status) {
+        if (status) BoxAppPlugins.get().getDatabaseHelper().setReadMessage(messageId);
+        else BoxAppPlugins.get().getDatabaseHelper().setUnReadMessage(messageId);
+    }
+
+    /**
+     * Use this method to control which messages have been archived by user.
+     *
+     * @param messageId message id in database.
+     * @param status true if message is deleted, false to undo delete message
+     *               (false status as default for all incoming messages)
+     */
+    public void chengeDeleteMessageStatus(int messageId, boolean status) {
+        if (status) BoxAppPlugins.get().getDatabaseHelper().deleteMessage(messageId);
+        else BoxAppPlugins.get().getDatabaseHelper().unDeleteMessage(messageId);
+    }
+
+    /**
+     * This method mark all messages as read
+     *
+     */
+    public void makeAllMessagesAsRead(){
+        BoxAppPlugins.get().getDatabaseHelper().setReadForAllMessages();
     }
 
     public List<BoxAppMessageModel> getUnReadMessages() {
