@@ -31,7 +31,7 @@ public class BoxAppMessageHelper {
         return instance;
     }
 
-    private enum MessageType {
+    public enum MessageType {
         /**
          * Push message type.
          */
@@ -302,13 +302,14 @@ public class BoxAppMessageHelper {
     /**
      * This method send request to GMS Worldwide server
      * for check new Viber messages for current user.
-     * This method work if your plan include this function!
+     * It's work if your plan include this functionality!
      * If you retrieve Viber messages on previous day,
      * you can't send second request for one day!.
      *
      * @return Observable for your subscribers.
      */
-    public Observable<List<BoxAppMessageModel>> getViberMessagesFromCloudObservable(long millsUTC) {
+    @Deprecated
+    private Observable<List<BoxAppMessageModel>> getViberMessagesFromCloudObservable(long millsUTC) {
         final long start_of_set_day = BoxAppTools.getStartOfDayUtcTime(millsUTC);
         if (BoxAppPlugins.get().getDatabaseHelper().isMessageUpdateForFoolDay(
                 start_of_set_day, MessageType.VIBER.getType())) {
@@ -339,6 +340,15 @@ public class BoxAppMessageHelper {
                 .subscribeOn(Schedulers.newThread());
     }
 
+    /**
+     * This method send request to GMS Worldwide server
+     * for check new Viber messages for current user.
+     * It's work if your plan include this functionality!
+     * If you retrieve Viber messages on previous day,
+     * you can't send second request for one day!.
+     * After receiving a response from the server it will be called notifyStorageSubscribers().
+     *
+     */
     public void checkViberMessages(long millsUTC) {
         final long start_of_set_day = BoxAppTools.getStartOfDayUtcTime(millsUTC);
         if (!BoxAppPlugins.get().getDatabaseHelper().isMessageUpdateForFoolDay(
