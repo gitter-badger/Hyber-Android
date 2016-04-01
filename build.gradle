@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.61-SNAPSHOT"
+version = "0.9.62-SNAPSHOT"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
@@ -9,7 +9,7 @@ def isReleaseBuild() {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 14
