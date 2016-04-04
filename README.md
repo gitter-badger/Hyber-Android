@@ -11,7 +11,7 @@ To use, add this github repo as a repository:
 
 Then add the next dependencies to project:
 ```groovy
-    compile 'com.gms_worldwide:boxappsdk:0.9.6'
+    compile 'com.gms_worldwide:boxappsdk:0.9.7'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
 ```
 
