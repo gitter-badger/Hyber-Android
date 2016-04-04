@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.63-SNAPSHOT"
+version = "0.9.7"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
@@ -14,12 +14,13 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 12
+        versionCode 13
         versionName version.toString()
     }
     buildTypes {
         release {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

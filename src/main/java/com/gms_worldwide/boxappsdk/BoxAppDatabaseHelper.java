@@ -2,6 +2,7 @@ package com.gms_worldwide.boxappsdk;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -273,7 +274,7 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
      * @return the messages
      */
     public List<BoxAppMessageModel> getMessages(long dateFrom, long dateTo, List<Integer> types) {
-        List<BoxAppMessageModel> boxAppMessageModels = new ArrayList<>();
+        List<BoxAppMessageModel> boxAppMessageModels = new ArrayList<BoxAppMessageModel>();
         try {
             QueryBuilder<BoxAppMessageDBModel, Integer> queryBuilder = getMessageDao().queryBuilder();
             queryBuilder.orderBy("time", false);
@@ -283,9 +284,10 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
                     .and().in("type", types);
 
             List<BoxAppMessageDBModel> messageDBModels = queryBuilder.query();
-            for (BoxAppMessageDBModel dbModel : messageDBModels) {
-                boxAppMessageModels.add(new BoxAppMessageModel(dbModel));
-            }
+            if (messageDBModels.size() > 0)
+                for (BoxAppMessageDBModel dbModel : messageDBModels) {
+                    boxAppMessageModels.add(new BoxAppMessageModel(dbModel));
+                }
         } catch (SQLException e) {
             e.printStackTrace();
         }

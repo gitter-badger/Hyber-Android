@@ -1,5 +1,7 @@
 package com.gms_worldwide.boxappsdk;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -89,7 +91,7 @@ public class BoxAppMessageHelper {
      *
      * @param messageModel the message model
      */
-    void newMessage(BoxAppMessageModel messageModel) {
+    void newMessage(@NonNull BoxAppMessageModel messageModel) {
         if (newMessageNotifier != null)
             newMessageNotifier.onNext(messageModel);
     }

@@ -18,7 +18,13 @@
       <version>0.9.61-SNAPSHOT</version>
       <version>0.9.62-SNAPSHOT</version>
       <version>0.9.63-SNAPSHOT</version>
+      <version>0.9.64-SNAPSHOT</version>
+      <version>0.9.65-SNAPSHOT</version>
+      <version>0.9.66-SNAPSHOT</version>
+      <version>0.9.67-SNAPSHOT</version>
+      <version>0.9.68-SNAPSHOT</version>
+      <version>0.9.681-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20160401130331</lastUpdated>
+    <lastUpdated>20160404111300</lastUpdated>
   </versioning>
 </metadata>
