@@ -284,16 +284,13 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
                     .and().in("type", types);
 
             List<BoxAppMessageDBModel> messageDBModels = queryBuilder.query();
-            Log.e(TAG, "messageDBModels --> " + BoxAppTools.objToString(messageDBModels));
             if (messageDBModels.size() > 0)
                 for (BoxAppMessageDBModel dbModel : messageDBModels) {
                     boxAppMessageModels.add(new BoxAppMessageModel(dbModel));
                 }
-            Log.e(TAG, "boxAppMessageModels --> " + BoxAppTools.objToString(boxAppMessageModels));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        Log.e(TAG, "return boxAppMessageModels --> " + BoxAppTools.objToString(boxAppMessageModels));
         return boxAppMessageModels;
     }
 

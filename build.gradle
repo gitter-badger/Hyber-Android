@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.681-SNAPSHOT"
+version = "0.9.7"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 12
+        versionCode 13
         versionName version.toString()
     }
     buildTypes {
@@ -31,7 +31,7 @@ android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact "build/outputs/aar/boxappsdk-debug.aar"
+            artifact "build/outputs/aar/boxappsdk-release.aar"
             artifactId = "boxappsdk"
             groupId = "com.gms_worldwide"
             version = version.toString()
