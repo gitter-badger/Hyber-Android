@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.67-SNAPSHOT"
+version = "0.9.68-SNAPSHOT"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
@@ -20,6 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

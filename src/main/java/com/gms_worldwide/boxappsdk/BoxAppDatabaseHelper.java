@@ -2,6 +2,7 @@ package com.gms_worldwide.boxappsdk;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -283,13 +284,16 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
                     .and().in("type", types);
 
             List<BoxAppMessageDBModel> messageDBModels = queryBuilder.query();
+            Log.e(TAG, "messageDBModels --> " + BoxAppTools.objToString(messageDBModels));
             if (messageDBModels.size() > 0)
                 for (BoxAppMessageDBModel dbModel : messageDBModels) {
                     boxAppMessageModels.add(new BoxAppMessageModel(dbModel));
                 }
+            Log.e(TAG, "boxAppMessageModels --> " + BoxAppTools.objToString(boxAppMessageModels));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Log.e(TAG, "return boxAppMessageModels --> " + BoxAppTools.objToString(boxAppMessageModels));
         return boxAppMessageModels;
     }
 
