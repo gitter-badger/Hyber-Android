@@ -273,7 +273,7 @@ class BoxAppDatabaseHelper extends OrmLiteSqliteOpenHelper {
      * @return the messages
      */
     public List<BoxAppMessageModel> getMessages(long dateFrom, long dateTo, List<Integer> types) {
-        List<BoxAppMessageModel> boxAppMessageModels = new ArrayList<>();
+        List<BoxAppMessageModel> boxAppMessageModels = new ArrayList<BoxAppMessageModel>();
         try {
             QueryBuilder<BoxAppMessageDBModel, Integer> queryBuilder = getMessageDao().queryBuilder();
             queryBuilder.orderBy("time", false);
