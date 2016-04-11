@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
-version = "0.9.7"
+version = "0.9.8-SNAPSHOT"
 
 def isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
@@ -14,13 +14,12 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 13
+        versionCode 21
         versionName version.toString()
     }
     buildTypes {
         release {
             minifyEnabled false
-            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,8 +30,8 @@ android.libraryVariants
 publishing {
     publications {
         maven(MavenPublication) {
-            artifact "build/outputs/aar/boxappsdk-release.aar"
-            artifactId = "boxappsdk"
+            artifact "build/outputs/aar/hybersdk-release.aar"
+            artifactId = "hybersdk"
             groupId = "com.gms_worldwide"
             version = version.toString()
         }

@@ -4,14 +4,14 @@ To use, add this github repo as a repository:
 ```groovy
     repositories {
         maven {
-            url 'https://raw.github.com/GlobalMessageServicesAG/GMSBox-SDK-PreRelease/master/releases/'
+            url 'https://raw.github.com/GlobalMessageServicesAG/Hyber-Android/master/releases/'
         }
     }
 ```
 
 Then add the next dependencies to project:
 ```groovy
-    compile 'com.gms_worldwide:boxappsdk:0.9.7'
+    compile 'com.gms_worldwide:hybersdk:0.9.7'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
 ```
 
@@ -30,14 +30,14 @@ Add the next lines for Rx compatibility:
 * RxAndroid: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxandroid'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxandroid.svg'></a>
 * RxJava: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxjava'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxjava.svg'></a>
 
-# Connect your app to GMS BoxApp SDK
+# Connect your app to Hyber
 
-Call BoxApp.initialize from the onCreate method of your Application class.
+Call Hyber.initialize from the onCreate method of your Application class.
 In this method you will also create an Installation object:
 
 ```java
     public void onCreate() {
-        BoxApp.initialize(this);
+        Hyber.initialize(this);
     }
 ```
 
@@ -45,22 +45,22 @@ Set up your project id and client key in `AndroidManifest.xml` like `<meta-data>
 
 ```xml
 <meta-data
-    android:name="com.gms_worldwide.boxappsdk.CLIENT_KEY"
-    android:value="@string/box_app_client_key" />
+    android:name="com.gms_worldwide.hybersdk.CLIENT_KEY"
+    android:value="@string/hyber_client_key" />
 <meta-data
-    android:name="com.gms_worldwide.boxappsdk.PROJECT_ID"
+    android:name="com.gms_worldwide.hybersdk.PROJECT_ID"
     android:value="@string/google_project_number" />
 ```
 
 Add the following service and broadcast receiver definitions to `AndroidManifest.xml` immediately before the closing `</application>` tag:
 
 ```xml
-<receiver android:name="com.gms_worldwide.boxappsdk.BoxAppSmsBroadcastReceiver" >
+<receiver android:name="com.gms_worldwide.hybersdk.HyberSmsBroadcastReceiver" >
     <intent-filter>
         <action android:name="android.provider.Telephony.SMS_RECEIVED" />
     </intent-filter>
 </receiver>
-<receiver android:name="com.gms_worldwide.boxappsdk.BoxAppGcmBroadcastReceiver"
+<receiver android:name="com.gms_worldwide.hybersdk.HyberGcmBroadcastReceiver"
     android:permission="com.google.android.c2dm.permission.SEND" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -77,19 +77,19 @@ Add the following service and broadcast receiver definitions to `AndroidManifest
         <category android:name="your.package.name" />
     </intent-filter>
 </receiver>
-<service android:name="com.gms_worldwide.boxappsdk.BoxAppGcmListenerService"
+<service android:name="com.gms_worldwide.hybersdk.HyberGcmListenerService"
     android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
         </intent-filter>
 </service>
-<service android:name="com.gms_worldwide.boxappsdk.BoxAppInstanceIDListenerService"
+<service android:name="com.gms_worldwide.hybersdk.HyberInstanceIDListenerService"
     android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.gms.iid.InstanceID" />
         </intent-filter>
 </service>
-<service android:name="com.gms_worldwide.boxappsdk.RegistrationIntentService"
+<service android:name="com.gms_worldwide.hybersdk.RegistrationIntentService"
     android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -129,19 +129,19 @@ Change the `android:name` attribute in the last two lines of the snippet above t
 To SDK could take SMS messages, you must specify the alpha names with which you want to receive messages.
 
 ```java
-BoxApp.getAlphaNamesHelper().addAlphaName(alphas);
+Hyber.getAlphaNamesHelper().addAlphaName(alphas);
 ```
 
 You can check the fingerprint certificate with the next line:
 
 ```java
-BoxApp.logFingerprint();
+Hyber.logFingerprint();
 ```
 
 To the user appeared in the system, it is necessary to authorize the user:
 
 ```java
-BoxApp.getUserHelper().loginUser(phone, email)
+Hyber.getUserHelper().loginUser(phone, email)
             .subscribe( userProfile -> { /** You do not have to keep it,
                                           * you can always get the current user's profile
                                           * by using the getCurrentUser() from UserHelper */ },
@@ -152,7 +152,7 @@ BoxApp.getUserHelper().loginUser(phone, email)
 For logout current user use this:
 
 ```java
-BoxApp.getUserHelper().logOutUser()
+Hyber.getUserHelper().logOutUser()
             .subscribe( success -> { /** Clear user data from your app */ },
                         Throwable::printStackTrace,
 			            () -> { /** Close your process dialog if needed */ });
@@ -161,20 +161,20 @@ BoxApp.getUserHelper().logOutUser()
 You can subscribe to update messages in SDK storage (this method don't call onComplete):
 
 ```java
-BoxApp.getMessageHelper().getStoredMessageObservable()
+Hyber.getMessageHelper().getStoredMessageObservable()
             .subscribe( listOfMessages -> { /** Show messages to user */ },
                         Throwable::printStackTrace );
 ```
 
-Use `BoxApp.getMessageHelper().notifyStorageSubscribers()` for manually update data in your subscription.
-Use `BoxApp.getMessageHelper().setDateFilter(year, month, day)` for receive messages for another day.
-Use `BoxApp.getMessageHelper().setPushFilter(isChecked)` (similarly for Viber and SMS) for filter messages by type.
+Use `Hyber.getMessageHelper().notifyStorageSubscribers()` for manually update data in your subscription.
+Use `Hyber.getMessageHelper().setDateFilter(year, month, day)` for receive messages for another day.
+Use `Hyber.getMessageHelper().setPushFilter(isChecked)` (similarly for Viber and SMS) for filter messages by type.
 After update the date or type filter will be sent a notification for subscribers to `StoredMessageObservable`.
 
 In order to receive incoming push, Viber and SMS instantly, just subscribe to the Observable (this method don't call onComplete):
 
 ```java
-BoxApp.getMessageHelper().getNewMessageNotifier()
+Hyber.getMessageHelper().getNewMessageNotifier()
             .subscribe( message -> { /** Show notification if needed.
                                       * Important! Emitted message is used for operative updating interface,
                                       * this message already has in a SDK built-in storage,
@@ -187,7 +187,7 @@ BoxApp.getMessageHelper().getNewMessageNotifier()
 You can request for Viber message updates:
 
 ```java
-BoxApp.getMessageHelper().checkNewViberMessagesFromCloud()
+Hyber.getMessageHelper().checkNewViberMessagesFromCloud()
             .subscribe( listOfMessages -> { /** Show notification if needed.
                                              * Important! Emitted list of messages is used for operative updating interface,
                                              * this messages already has in a SDK built-in storage,
@@ -197,7 +197,7 @@ BoxApp.getMessageHelper().checkNewViberMessagesFromCloud()
                         Throwable::printStackTrace);
 ```
 
-## How to registration app powered by GMSBox SDK
+## How to registration app powered by Hyber
 
 - Register your app in [Google Developers Console][GoogleDevelopersConsoleHelp]
 - Enable Google services for your project [Google services console][GoogleServicesConsole]
