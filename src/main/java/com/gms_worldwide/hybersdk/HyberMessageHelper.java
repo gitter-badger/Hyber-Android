@@ -20,58 +20,11 @@ public class HyberMessageHelper {
     private static final String TAG = "com.gms_worldwide.hybersdk.HyberMessageHelper";
 
     private static HyberMessageHelper instance = null;
-
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
-    public static HyberMessageHelper getInstance() {
-        if (instance == null) {
-            instance = new HyberMessageHelper();
-        }
-        return instance;
-    }
-
-    public enum MessageType {
-        /**
-         * Push message type.
-         */
-        PUSH(HyberConstants.PUSH_TYPE),
-        /**
-         * Viber message type.
-         */
-        VIBER(HyberConstants.VIBER_TYPE),
-        /**
-         * Sms message type.
-         */
-        SMS(HyberConstants.SMS_TYPE);
-
-        /**
-         * The Type.
-         */
-        int type;
-
-        MessageType(int t) {
-            type = t;
-        }
-
-        /**
-         * Gets type.
-         *
-         * @return the type
-         */
-        int getType() {
-            return type;
-        }
-    }
-
     private Observable<List<HyberMessageModel>> observableStoredMessages;
     private Subscriber<? super List<HyberMessageModel>> subscriberStoredMessages;
     private PublishSubject<HyberMessageModel> newMessageNotifier;
     private HashMap<MessageType, Boolean> filterMessage;
     private long mDateFrom, mDateTo;
-
     /**
      * Instantiates a Hyber message helper.
      */
@@ -84,6 +37,18 @@ public class HyberMessageHelper {
         filterMessage.put(MessageType.PUSH, true);
         filterMessage.put(MessageType.VIBER, true);
         filterMessage.put(MessageType.SMS, true);
+    }
+
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static HyberMessageHelper getInstance() {
+        if (instance == null) {
+            instance = new HyberMessageHelper();
+        }
+        return instance;
     }
 
     /**
@@ -110,8 +75,8 @@ public class HyberMessageHelper {
      * Set date for one day filter.
      * Don't set date previously registration user date.
      *
-     * @param dateFrom  the time un UTC format
-     * @param dateTo  the time un UTC format
+     * @param dateFrom the time un UTC format
+     * @param dateTo   the time un UTC format
      */
     public void setDateFilter(long dateFrom, long dateTo) {
         mDateFrom = dateFrom;
@@ -186,7 +151,7 @@ public class HyberMessageHelper {
     }
 
     public void updateFilter(MessageType type, boolean isOn) {
-        if (filterMessage.containsKey(type)){
+        if (filterMessage.containsKey(type)) {
             filterMessage.remove(type);
         }
         filterMessage.put(type, isOn);
@@ -200,7 +165,7 @@ public class HyberMessageHelper {
      * @param id message id in database.
      */
     @Deprecated
-    public void makeAsDeletedMessage(int id){
+    public void makeAsDeletedMessage(int id) {
         HyberPlugins.get().getDatabaseHelper().deleteMessage(id);
     }
 
@@ -210,7 +175,7 @@ public class HyberMessageHelper {
      * @param id message id in database.
      */
     @Deprecated
-    public void makeAsReadMessage(int id){
+    public void makeAsReadMessage(int id) {
         HyberPlugins.get().getDatabaseHelper().setReadMessage(id);
     }
 
@@ -220,7 +185,7 @@ public class HyberMessageHelper {
      * @param id message id in database.
      */
     @Deprecated
-    public void makeAsUnReadMessage(int id){
+    public void makeAsUnReadMessage(int id) {
         HyberPlugins.get().getDatabaseHelper().setUnReadMessage(id);
     }
 
@@ -228,8 +193,8 @@ public class HyberMessageHelper {
      * Use this method to control which messages have been read by user.
      *
      * @param messageId message id in database.
-     * @param status true if message is read, false to set message us unread
-     *               (false status as default for all incoming messages)
+     * @param status    true if message is read, false to set message us unread
+     *                  (false status as default for all incoming messages)
      */
     public void chengeReadMessageStatus(int messageId, boolean status) {
         if (status) HyberPlugins.get().getDatabaseHelper().setReadMessage(messageId);
@@ -240,8 +205,8 @@ public class HyberMessageHelper {
      * Use this method to control which messages have been archived by user.
      *
      * @param messageId message id in database.
-     * @param status true if message is deleted, false to undo delete message
-     *               (false status as default for all incoming messages)
+     * @param status    true if message is deleted, false to undo delete message
+     *                  (false status as default for all incoming messages)
      */
     public void chengeDeleteMessageStatus(int messageId, boolean status) {
         if (status) HyberPlugins.get().getDatabaseHelper().deleteMessage(messageId);
@@ -250,9 +215,8 @@ public class HyberMessageHelper {
 
     /**
      * This method mark all messages as read
-     *
      */
-    public void makeAllMessagesAsRead(){
+    public void makeAllMessagesAsRead() {
         HyberPlugins.get().getDatabaseHelper().setReadForAllMessages();
     }
 
@@ -263,7 +227,7 @@ public class HyberMessageHelper {
     /**
      * Delete all messages with 'makeAsDeleted' marker.
      */
-    public void clearDeletedMessages(){
+    public void clearDeletedMessages() {
         HyberPlugins.get().getDatabaseHelper().clearDeletedMessages();
     }
 
@@ -336,7 +300,7 @@ public class HyberMessageHelper {
                     @Override
                     public List<HyberMessageModel> call(retrofit2.Response<HyberMessagesEnvelope> response) {
                         setViberMessagesCompleteUpdateDate(start_of_set_day);
-                        return  viberMessageListSaveToDb(viberEnvelopeToListOfMessages(response.body()));
+                        return viberMessageListSaveToDb(viberEnvelopeToListOfMessages(response.body()));
                     }
                 })
                 .subscribeOn(Schedulers.newThread());
@@ -349,7 +313,6 @@ public class HyberMessageHelper {
      * If you retrieve Viber messages on previous day,
      * you can't send second request for one day!.
      * After receiving a response from the server it will be called notifyStorageSubscribers().
-     *
      */
     public void checkViberMessages(long millsUTC) {
         final long start_of_set_day = HyberTools.getStartOfDayUtcTime(millsUTC);
@@ -433,5 +396,38 @@ public class HyberMessageHelper {
         HyberPlugins.get().getDatabaseHelper()
                 .addMessageUpdateInfo(millsUTC, MessageType.VIBER.getType(),
                         (HyberTools.getEndOfDayUtcTime(millsUTC) < System.currentTimeMillis()));
+    }
+
+    public enum MessageType {
+        /**
+         * Push message type.
+         */
+        PUSH(HyberConstants.PUSH_TYPE),
+        /**
+         * Viber message type.
+         */
+        VIBER(HyberConstants.VIBER_TYPE),
+        /**
+         * Sms message type.
+         */
+        SMS(HyberConstants.SMS_TYPE);
+
+        /**
+         * The Type.
+         */
+        int type;
+
+        MessageType(int t) {
+            type = t;
+        }
+
+        /**
+         * Gets type.
+         *
+         * @return the type
+         */
+        int getType() {
+            return type;
+        }
     }
 }

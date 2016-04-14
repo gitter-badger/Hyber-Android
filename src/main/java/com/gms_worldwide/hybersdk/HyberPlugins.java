@@ -10,6 +10,19 @@ class HyberPlugins {
 
     private static final Object LOCK = new Object();
     private static HyberPlugins instance;
+    /**
+     * The Lock.
+     */
+    final Object lock = new Object();
+    private final String projectId;
+    private final String clientKey;
+    private HyberApiClient restClient;
+    private HyberDatabaseHelper databaseHelper;
+    private String gcmID = "";
+    private HyberPlugins(String projectId, String clientKey) {
+        this.projectId = projectId;
+        this.clientKey = clientKey;
+    }
 
     /**
      * Initialize.
@@ -55,22 +68,6 @@ class HyberPlugins {
         synchronized (LOCK) {
             instance = null;
         }
-    }
-
-    /**
-     * The Lock.
-     */
-    final Object lock = new Object();
-    private final String projectId;
-    private final String clientKey;
-
-    private HyberApiClient restClient;
-    private HyberDatabaseHelper databaseHelper;
-    private String gcmID = "";
-
-    private HyberPlugins(String projectId, String clientKey) {
-        this.projectId = projectId;
-        this.clientKey = clientKey;
     }
 
     /**
@@ -163,6 +160,13 @@ class HyberPlugins {
      * The type Android.
      */
     static class Android extends HyberPlugins {
+        private final Context applicationContext;
+
+        private Android(Context context, String projectId, String clientKey) {
+            super(projectId, clientKey);
+            applicationContext = context.getApplicationContext();
+        }
+
         /**
          * Initialize.
          *
@@ -181,13 +185,6 @@ class HyberPlugins {
          */
         static HyberPlugins.Android get() {
             return (HyberPlugins.Android) HyberPlugins.get();
-        }
-
-        private final Context applicationContext;
-
-        private Android(Context context, String projectId, String clientKey) {
-            super(projectId, clientKey);
-            applicationContext = context.getApplicationContext();
         }
 
         /**

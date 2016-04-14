@@ -89,7 +89,7 @@ Add the following service and broadcast receiver definitions to `AndroidManifest
             <action android:name="com.google.android.gms.iid.InstanceID" />
         </intent-filter>
 </service>
-<service android:name="com.gms_worldwide.hybersdk.RegistrationIntentService"
+<service android:name="com.gms_worldwide.hybersdk.HyberRegistrationIntentService"
     android:exported="false" >
         <intent-filter>
             <action android:name="com.google.android.c2dm.intent.RECEIVE" />

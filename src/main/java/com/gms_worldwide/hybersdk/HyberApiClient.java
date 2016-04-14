@@ -20,13 +20,11 @@ import rx.Observable;
  */
 class HyberApiClient {
 
-    private static final String API_BASE_URL = HyberConstants.BASE_URL;
-
     /**
      * The constant STANDARD_TIMEOUT.
      */
     public static final int STANDARD_TIMEOUT = 20;  // seconds
-
+    private static final String API_BASE_URL = HyberConstants.BASE_URL;
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
     private HyberWebService hyberWebService;
@@ -34,7 +32,7 @@ class HyberApiClient {
     /**
      * Instantiates a Hyber api client.
      */
-    public HyberApiClient(){
+    public HyberApiClient() {
 
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -82,92 +80,6 @@ class HyberApiClient {
         return retrofit.create(serviceClass);
     }
 
-    private interface HyberWebService {
-
-        /**
-         * Delivery report observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.OTT_URL_PATH + "deliveryReport")
-        Observable<retrofit2.Response<Void>> deliveryReportObservable(@Body Object o);
-
-        /**
-         * Gets messages observable.
-         *
-         * @param channel                    the channel
-         * @param hyberMessagesRequestModel the Hyber messages request model
-         * @return the messages observable
-         */
-        @POST(HyberConstants.OTT_URL_PATH + "requestMessages/{channel}")
-        Observable<retrofit2.Response<HyberMessagesEnvelope>> getMessagesObservable(@Path("channel") String channel, @Body HyberMessagesRequestModel hyberMessagesRequestModel);
-
-        /**
-         * Add abonent observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "lib_add_abonent")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> addAbonentObservable(@Body Object o);
-
-        /**
-         * Update token observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "lib_update_token")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> updateTokenObservable(@Body Object o);
-
-        /**
-         * Abonent profile observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "abonent_profile")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> abonentProfileObservable(@Body Object o);
-
-        /**
-         * Abonent location observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "location")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> abonentLocationObservable(@Body Object o);
-
-        /**
-         * Update phone email observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "lib_update_phone_email")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> updatePhoneEmailObservable(@Body Object o);
-
-        /**
-         * Allow recieve push observable observable.
-         *
-         * @param o the o
-         * @return the observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "lib_alow_recieve_push")
-        Observable<retrofit2.Response<HyberBaseResponseModel>> allowRecievePushObservable(@Body Object o);
-
-        /**
-         * Gets user profile observable.
-         *
-         * @param o the o
-         * @return the user profile observable
-         */
-        @POST (HyberConstants.MAIN_URL_PATH + "get_profile")
-        Observable<HyberUserProfileResponseModel> getUserProfileObservable(@Body Object o);
-
-    }
-
     /**
      * Delivery report observable observable.
      *
@@ -177,7 +89,7 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<Void>> deliveryReportObservable(long uniqAppDeviceId, long msg_gms_uniq_id,
-                                                       int status){
+                                                                         int status) {
         HyberDeliveryReportModel hyberDeliveryReportModel =
                 new HyberDeliveryReportModel(uniqAppDeviceId, msg_gms_uniq_id, status);
         return hyberWebService.deliveryReportObservable(hyberDeliveryReportModel);
@@ -192,7 +104,7 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<HyberBaseResponseModel>> registrationObservable(
-            long phone, String email, String gcmToken){
+            long phone, String email, String gcmToken) {
         String p = null;
         if (phone > 0)
             p = String.valueOf(phone);
@@ -211,7 +123,7 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<HyberBaseResponseModel>> updateTokenObservable(
-            long uniqAppDeviceId, String gcmToken){
+            long uniqAppDeviceId, String gcmToken) {
         return hyberWebService.updateTokenObservable(
                 new HyberUpdateTokenModel(uniqAppDeviceId, gcmToken));
     }
@@ -233,7 +145,7 @@ class HyberApiClient {
     public Observable<retrofit2.Response<HyberBaseResponseModel>> abonentProfileObservable(
             long uniqAppDeviceId, int sex, String city,
             String region, String fio, int age, int[] interests,
-            int[] ads_source, double latitude, double longitude){
+            int[] ads_source, double latitude, double longitude) {
         HyberUserInfoModel hyberUserInfoModel =
                 new HyberUserInfoModel(uniqAppDeviceId, sex, city, region, fio,
                         age, interests, ads_source, latitude, longitude);
@@ -249,7 +161,7 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<HyberBaseResponseModel>> abonentLocationObservable(
-            long uniqAppDeviceId, double latitude, double longitude){
+            long uniqAppDeviceId, double latitude, double longitude) {
         HyberUserLocationModel hyberUserLocationModel =
                 new HyberUserLocationModel(uniqAppDeviceId, latitude, longitude);
         return hyberWebService.abonentLocationObservable(hyberUserLocationModel);
@@ -264,7 +176,7 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<HyberBaseResponseModel>> updatePhoneEmailObservable(
-            long uniqAppDeviceId, long phone, String email){
+            long uniqAppDeviceId, long phone, String email) {
         String p = null;
         if (phone > 0)
             p = String.valueOf(phone);
@@ -282,7 +194,7 @@ class HyberApiClient {
      * @param isOn            the is on
      * @return the observable
      */
-    public Observable<retrofit2.Response<HyberBaseResponseModel>> allowRecievePushObservable(long uniqAppDeviceId, boolean isOn){
+    public Observable<retrofit2.Response<HyberBaseResponseModel>> allowRecievePushObservable(long uniqAppDeviceId, boolean isOn) {
         HyberAllowRecievePushModel model =
                 new HyberAllowRecievePushModel(uniqAppDeviceId, (isOn) ? 1 : 0);
         return hyberWebService.allowRecievePushObservable(model);
@@ -294,7 +206,7 @@ class HyberApiClient {
      * @param uniqAppDeviceId the uniq app device id
      * @return the observable
      */
-    public Observable<HyberUserProfileResponseModel> getUserProfileObservable(long uniqAppDeviceId){
+    public Observable<HyberUserProfileResponseModel> getUserProfileObservable(long uniqAppDeviceId) {
         HyberGetUserProfileRequestModel model =
                 new HyberGetUserProfileRequestModel(uniqAppDeviceId);
         return hyberWebService.getUserProfileObservable(model);
@@ -309,9 +221,95 @@ class HyberApiClient {
      * @return the observable
      */
     public Observable<retrofit2.Response<HyberMessagesEnvelope>> getViberMessagesObservable(
-            long phone, long uniqAppDeviceId, long date_utc){
+            long phone, long uniqAppDeviceId, long date_utc) {
         return hyberWebService.getMessagesObservable(HyberConstants.VIBER_CHANNEL,
                 new HyberMessagesRequestModel(uniqAppDeviceId, phone, date_utc));
+    }
+
+    private interface HyberWebService {
+
+        /**
+         * Delivery report observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.OTT_URL_PATH + "deliveryReport")
+        Observable<retrofit2.Response<Void>> deliveryReportObservable(@Body Object o);
+
+        /**
+         * Gets messages observable.
+         *
+         * @param channel                   the channel
+         * @param hyberMessagesRequestModel the Hyber messages request model
+         * @return the messages observable
+         */
+        @POST(HyberConstants.OTT_URL_PATH + "requestMessages/{channel}")
+        Observable<retrofit2.Response<HyberMessagesEnvelope>> getMessagesObservable(@Path("channel") String channel, @Body HyberMessagesRequestModel hyberMessagesRequestModel);
+
+        /**
+         * Add abonent observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "lib_add_abonent")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> addAbonentObservable(@Body Object o);
+
+        /**
+         * Update token observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "lib_update_token")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> updateTokenObservable(@Body Object o);
+
+        /**
+         * Abonent profile observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "abonent_profile")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> abonentProfileObservable(@Body Object o);
+
+        /**
+         * Abonent location observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "location")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> abonentLocationObservable(@Body Object o);
+
+        /**
+         * Update phone email observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "lib_update_phone_email")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> updatePhoneEmailObservable(@Body Object o);
+
+        /**
+         * Allow recieve push observable observable.
+         *
+         * @param o the o
+         * @return the observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "lib_alow_recieve_push")
+        Observable<retrofit2.Response<HyberBaseResponseModel>> allowRecievePushObservable(@Body Object o);
+
+        /**
+         * Gets user profile observable.
+         *
+         * @param o the o
+         * @return the user profile observable
+         */
+        @POST(HyberConstants.MAIN_URL_PATH + "get_profile")
+        Observable<HyberUserProfileResponseModel> getUserProfileObservable(@Body Object o);
+
     }
 
 }

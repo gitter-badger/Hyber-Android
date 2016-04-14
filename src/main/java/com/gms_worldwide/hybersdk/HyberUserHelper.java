@@ -18,6 +18,13 @@ public class HyberUserHelper {
     private static HyberUserHelper instance = null;
 
     /**
+     * Instantiates a Hyber user helper.
+     */
+    protected HyberUserHelper() {
+
+    }
+
+    /**
      * Gets instance.
      *
      * @return the instance
@@ -27,13 +34,6 @@ public class HyberUserHelper {
             instance = new HyberUserHelper();
         }
         return instance;
-    }
-
-    /**
-     * Instantiates a Hyber user helper.
-     */
-    protected HyberUserHelper() {
-
     }
 
     /**
@@ -256,7 +256,7 @@ public class HyberUserHelper {
                     @Override
                     public Boolean call(retrofit2.Response<HyberBaseResponseModel> response) {
                         //if (baseResponseModel.isSuccess())
-                            HyberPlugins.get().getDatabaseHelper().cleanUserData();
+                        HyberPlugins.get().getDatabaseHelper().cleanUserData();
                         return true;//baseResponseModel.isSuccess();
                     }
                 });

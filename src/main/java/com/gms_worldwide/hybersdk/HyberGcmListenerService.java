@@ -18,20 +18,6 @@ public class HyberGcmListenerService extends GcmListenerService {
     private static final String TAG = "com.gms_worldwide.hybersdk.HyberGcmListenerService";
 
     /**
-     * Called when message is received.
-     *
-     * @param from SenderID of the sender.
-     * @param data Data bundle containing message data as key/value pairs.
-     *             For Set of keys use data.keySet().
-     */
-    // [START receive_message]
-    @Override
-    public void onMessageReceived(String from, Bundle data) {
-
-    }
-    // [END receive_message]
-
-    /**
      * Create and show a simple notification containing the received GCM message.
      *
      * @param from the from
@@ -48,7 +34,7 @@ public class HyberGcmListenerService extends GcmListenerService {
         String owner = "";
         if (currentUserDBModel.getPhone() > 0) {
             owner = String.valueOf(currentUserDBModel.getPhone());
-        } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()){
+        } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()) {
             owner = currentUserDBModel.getEmail();
         }
         try {
@@ -65,6 +51,7 @@ public class HyberGcmListenerService extends GcmListenerService {
             e.printStackTrace();
         }
     }
+    // [END receive_message]
 
     private static void sendDeliveryReport(long getUniqAppDeviceId, long msg_gms_uniq_id) {
         HyberPlugins.get().restClient().deliveryReportObservable(
@@ -89,6 +76,19 @@ public class HyberGcmListenerService extends GcmListenerService {
 
                     }
                 });
+    }
+
+    /**
+     * Called when message is received.
+     *
+     * @param from SenderID of the sender.
+     * @param data Data bundle containing message data as key/value pairs.
+     *             For Set of keys use data.keySet().
+     */
+    // [START receive_message]
+    @Override
+    public void onMessageReceived(String from, Bundle data) {
+
     }
 
 }

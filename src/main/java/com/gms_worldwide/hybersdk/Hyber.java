@@ -111,12 +111,9 @@ public class Hyber {
      * }
      * </pre>
      *
-     * @param context
-     *          The active {@link Context} for your application.
-     * @param projectId
-     *          The project id provided in the Google developer console.
-     * @param clientKey
-     *          The client key provided in the Hyber dashboard.
+     * @param context   The active {@link Context} for your application.
+     * @param projectId The project id provided in the Google developer console.
+     * @param clientKey The client key provided in the Hyber dashboard.
      */
     private static void initialize(Context context, String projectId, String clientKey) {
         HyberPlugins.Android.initialize(context, projectId, clientKey);
@@ -182,14 +179,14 @@ public class Hyber {
      *
      * @return string with client key
      */
-    public static String getClientKey(){
+    public static String getClientKey() {
         return HyberPlugins.get().getClientKey();
     }
 
     /**
      * Tool for show in logcat application fingerprint certificate.
      */
-    public static void logFingerprint(){
+    public static void logFingerprint() {
         HyberTools.printKeyHash(mContext);
     }
 

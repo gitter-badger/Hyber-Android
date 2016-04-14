@@ -267,9 +267,9 @@ class HyberDatabaseHelper extends OrmLiteSqliteOpenHelper {
     /**
      * Gets messages.
      *
-     * @param dateFrom  the time un UTC format
-     * @param dateTo  the time un UTC format
-     * @param types the types
+     * @param dateFrom the time un UTC format
+     * @param dateTo   the time un UTC format
+     * @param types    the types
      * @return the messages
      */
     public List<HyberMessageModel> getMessages(long dateFrom, long dateTo, List<Integer> types) {
@@ -382,7 +382,6 @@ class HyberDatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     /**
      * Set all messages is read.
-     *
      */
     public void setReadForAllMessages() {
         try {
