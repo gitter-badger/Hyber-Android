@@ -12,6 +12,13 @@ public class HyberAlphaNamesHelper {
     private static HyberAlphaNamesHelper instance = null;
 
     /**
+     * Instantiates a Hyber alpha names helper.
+     */
+    protected HyberAlphaNamesHelper() {
+
+    }
+
+    /**
      * Gets instance.
      *
      * @return the instance
@@ -21,13 +28,6 @@ public class HyberAlphaNamesHelper {
             instance = new HyberAlphaNamesHelper();
         }
         return instance;
-    }
-
-    /**
-     * Instantiates a Hyber alpha names helper.
-     */
-    protected HyberAlphaNamesHelper() {
-
     }
 
     /**

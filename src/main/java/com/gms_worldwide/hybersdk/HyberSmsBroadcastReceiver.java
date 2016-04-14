@@ -15,47 +15,11 @@ import java.util.Map;
  */
 public class HyberSmsBroadcastReceiver extends BroadcastReceiver {
 
+    private static final String SMS_BUNDLE = "pdus";
     /**
      * The Tag.
      */
     String TAG = "com.gms_worldwide.hybersdk.HyberSmsBroadcastReceiver";
-
-    private static final String SMS_BUNDLE = "pdus";
-
-    @Override
-    public void onReceive(final Context context, Intent intent) {
-        Map<String, String> msg = RetrieveMessages(intent);
-
-        /**
-         * Tested with max sms length == 2001 characters
-         */
-        try {
-            if (Hyber.getUserHelper().isUserLogin() && msg != null) {
-                HyberCurrentUserDBModel currentUserDBModel =
-                        HyberPlugins.get().getDatabaseHelper().getCurrentUser();
-                // send all SMS via XMPP by sender
-                for (String sender : msg.keySet()) {
-                    if (HyberPlugins.get().getDatabaseHelper().isAlphaNameValid(sender)) {
-                        //this will update the UI with message
-                        String owner = "";
-                        if (currentUserDBModel.getPhone() > 0) {
-                            owner = String.valueOf(currentUserDBModel.getPhone());
-                        } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()){
-                            owner = currentUserDBModel.getEmail();
-                        }
-                        int id = HyberPlugins.get().getDatabaseHelper().saveIncomingMessage(sender, msg.get(sender),
-                                HyberTools.getUtcTime(), HyberConstants.SMS_TYPE, owner);
-                        Hyber.getMessageHelper().newMessage(
-                                new HyberMessageModel(id, sender, msg.get(sender), HyberTools.getUtcTime(),
-                                        HyberConstants.SMS_TYPE, owner, false));
-
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     private static Map<String, String> RetrieveMessages(Intent intent) {
         Map<String, String> msg = null;
@@ -73,7 +37,7 @@ public class HyberSmsBroadcastReceiver extends BroadcastReceiver {
                 // There can be multiple SMS from multiple senders, there can be a maximum of nbrOfpdus different senders
                 // However, send long SMS of same sender in one message
                 for (int i = 0; i < nbrOfpdus; i++) {
-                    msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
+                    msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
 
                     String originatinAddress = msgs[i].getOriginatingAddress();
 
@@ -96,6 +60,41 @@ public class HyberSmsBroadcastReceiver extends BroadcastReceiver {
         }
 
         return msg;
+    }
+
+    @Override
+    public void onReceive(final Context context, Intent intent) {
+        Map<String, String> msg = RetrieveMessages(intent);
+
+        /**
+         * Tested with max sms length == 2001 characters
+         */
+        try {
+            if (Hyber.getUserHelper().isUserLogin() && msg != null) {
+                HyberCurrentUserDBModel currentUserDBModel =
+                        HyberPlugins.get().getDatabaseHelper().getCurrentUser();
+                // send all SMS via XMPP by sender
+                for (String sender : msg.keySet()) {
+                    if (HyberPlugins.get().getDatabaseHelper().isAlphaNameValid(sender)) {
+                        //this will update the UI with message
+                        String owner = "";
+                        if (currentUserDBModel.getPhone() > 0) {
+                            owner = String.valueOf(currentUserDBModel.getPhone());
+                        } else if (currentUserDBModel.getEmail() != null && !currentUserDBModel.getEmail().isEmpty()) {
+                            owner = currentUserDBModel.getEmail();
+                        }
+                        int id = HyberPlugins.get().getDatabaseHelper().saveIncomingMessage(sender, msg.get(sender),
+                                HyberTools.getUtcTime(), HyberConstants.SMS_TYPE, owner);
+                        Hyber.getMessageHelper().newMessage(
+                                new HyberMessageModel(id, sender, msg.get(sender), HyberTools.getUtcTime(),
+                                        HyberConstants.SMS_TYPE, owner, false));
+
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

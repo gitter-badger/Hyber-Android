@@ -16,20 +16,31 @@ import java.io.IOException;
  */
 public class HyberRegistrationIntentService extends IntentService {
 
-    private static final String TAG = "com.gms_worldwide.hybersdk.HyberRegIntentService";
-    private static final String[] TOPICS = {"global"};
-
     /**
      * The Action start if required.
      */
     static final String ACTION_START_IF_REQUIRED =
             "com.gms_worldwide.hybersdk.HyberRegistrationIntentService.startIfRequired";
+    private static final String TAG = "com.gms_worldwide.hybersdk.HyberRegIntentService";
+    private static final String[] TOPICS = {"global"};
 
     /**
      * Instantiates a new Registration intent service.
      */
     public HyberRegistrationIntentService() {
         super(TAG);
+    }
+
+    /**
+     * Start service if required.
+     *
+     * @param context the context
+     */
+    static void startServiceIfRequired(Context context) {
+
+        HyberServiceUtils.runIntentInService(
+                context, new Intent(HyberRegistrationIntentService.ACTION_START_IF_REQUIRED), HyberRegistrationIntentService.class);
+
     }
 
     @Override
@@ -72,6 +83,7 @@ public class HyberRegistrationIntentService extends IntentService {
         Intent registrationComplete = new Intent("registrationComplete");
         LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
     }
+    // [END subscribe_topics]
 
     /**
      * Subscribe to any GCM topics of interest, as defined by the TOPICS constant.
@@ -85,19 +97,6 @@ public class HyberRegistrationIntentService extends IntentService {
         for (String topic : TOPICS) {
             pubSub.subscribe(token, "/topics/" + topic, null);
         }
-    }
-    // [END subscribe_topics]
-
-    /**
-     * Start service if required.
-     *
-     * @param context the context
-     */
-    static void startServiceIfRequired(Context context) {
-
-        HyberServiceUtils.runIntentInService(
-                context, new Intent(HyberRegistrationIntentService.ACTION_START_IF_REQUIRED), HyberRegistrationIntentService.class);
-
     }
 
 }

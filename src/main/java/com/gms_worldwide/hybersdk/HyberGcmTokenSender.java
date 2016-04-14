@@ -18,7 +18,7 @@ class HyberGcmTokenSender {
 
     /**
      * Persist registration to third-party servers.
-     * <p>
+     * <p/>
      * Modify this method to associate the user's GCM registration token with any server-side account
      * maintained by your application.
      *
@@ -38,8 +38,8 @@ class HyberGcmTokenSender {
         if (currentUserDBModel.getUniqAppDeviceId() > 0 &&
                 (currentUserDBModel.getPhone() > 0 ||
                         !currentUserDBModel.getEmail().equals("")) &&
-                !token.equals("")){
-            if (!currentUserDBModel.getGcmTokenId().equals(token)){
+                !token.equals("")) {
+            if (!currentUserDBModel.getGcmTokenId().equals(token)) {
 
 
                 final HyberCurrentUserDBModel finalCurrentUserDBModel = currentUserDBModel;
@@ -63,7 +63,7 @@ class HyberGcmTokenSender {
 
                             @Override
                             public void onNext(retrofit2.Response<HyberBaseResponseModel> response) {
-                                if (response.body().isSuccess()){
+                                if (response.body().isSuccess()) {
                                     finalCurrentUserDBModel.setGcmTokenId(token);
                                     HyberPlugins.get().getDatabaseHelper().updateCurrentUser(finalCurrentUserDBModel);
 

@@ -31,7 +31,7 @@ class HyberTools {
      * @param o the o
      * @return the string
      */
-    public static String objToString(Object o){
+    public static String objToString(Object o) {
         return new Gson().toJson(o);
     }
 
@@ -73,7 +73,7 @@ class HyberTools {
     /**
      * Get current certificate fingerprint
      *
-     * @param ctx         context of application
+     * @param ctx context of application
      * @return Base64 packed SHA fingerprint of your packet certificate
      */
     private static String[] getCertificateFingerprint(Context ctx) {
@@ -142,7 +142,7 @@ class HyberTools {
     /**
      * Gets start of day utc time.
      *
-     * @param millsUTC  the time un UTC format
+     * @param millsUTC the time un UTC format
      * @return the start of day utc time
      */
     public static long getStartOfDayUtcTime(long millsUTC) {
@@ -176,7 +176,7 @@ class HyberTools {
     /**
      * Gets end of day utc time.
      *
-     * @param millsUTC  the time un UTC format
+     * @param millsUTC the time un UTC format
      * @return the end of day utc time
      */
     public static long getEndOfDayUtcTime(long millsUTC) {
@@ -197,7 +197,7 @@ class HyberTools {
      */
     public static int[] converStringToIntegerArray(String s) {
         int[] integerArray = new int[0];
-        if (!TextUtils.isEmpty(s) && !s.equals("[]")){
+        if (!TextUtils.isEmpty(s) && !s.equals("[]")) {
             String[] stringArray = s
                     .replaceAll("\\[", "")
                     .replaceAll("\\]", "")

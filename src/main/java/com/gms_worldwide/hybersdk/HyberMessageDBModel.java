@@ -62,24 +62,6 @@ class HyberMessageDBModel implements Serializable {
     }
 
     /**
-     * Sets deleted.
-     *
-     * @param deleted the deleted
-     */
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    /**
-     * Sets is read .
-     *
-     * @param isRead the read
-     */
-    public void setRead(boolean isRead) {
-        this.isRead = isRead;
-    }
-
-    /**
      * Gets id.
      *
      * @return the id
@@ -152,11 +134,29 @@ class HyberMessageDBModel implements Serializable {
     }
 
     /**
+     * Sets deleted.
+     *
+     * @param deleted the deleted
+     */
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    /**
      * Is read boolean.
      *
      * @return the boolean
      */
     public boolean isRead() {
         return isRead;
+    }
+
+    /**
+     * Sets is read .
+     *
+     * @param isRead the read
+     */
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
     }
 }

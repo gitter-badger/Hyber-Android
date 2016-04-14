@@ -43,24 +43,6 @@ class HyberMessageUpdateDBModel implements Serializable {
     }
 
     /**
-     * Sets time.
-     *
-     * @param time the time
-     */
-    public void setTime(long time) {
-        this.time = time;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param type the type
-     */
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    /**
      * Sets is fool day.
      *
      * @param is_fool_day the is fool day
@@ -88,12 +70,30 @@ class HyberMessageUpdateDBModel implements Serializable {
     }
 
     /**
+     * Sets time.
+     *
+     * @param time the time
+     */
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    /**
      * Gets type.
      *
      * @return the type
      */
     public int getType() {
         return type;
+    }
+
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
+    public void setType(int type) {
+        this.type = type;
     }
 
     /**

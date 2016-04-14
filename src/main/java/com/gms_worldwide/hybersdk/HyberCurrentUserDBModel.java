@@ -180,141 +180,6 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
-     * Sets uniq app device id.
-     *
-     * @param uniqAppDeviceId the uniq app device id
-     */
-    public void setUniqAppDeviceId(long uniqAppDeviceId) {
-        this.uniqAppDeviceId = uniqAppDeviceId;
-    }
-
-    /**
-     * Sets gcm token id.
-     *
-     * @param gcmTokenId the gcm token id
-     */
-    public void setGcmTokenId(String gcmTokenId) {
-        this.gcmTokenId = gcmTokenId;
-    }
-
-    /**
-     * Sets phone.
-     *
-     * @param phone the phone
-     */
-    public void setPhone(long phone) {
-        this.phone = phone;
-    }
-
-    /**
-     * Sets email.
-     *
-     * @param email the email
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * Sets latitude.
-     *
-     * @param latitude the latitude
-     */
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    /**
-     * Sets longitude.
-     *
-     * @param longitude the longitude
-     */
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    /**
-     * Sets fio.
-     *
-     * @param fio the region
-     */
-    public void setFio(String fio) {
-        this.fio = fio;
-    }
-
-    /**
-     * Sets region.
-     *
-     * @param region the region
-     */
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    /**
-     * Sets city.
-     *
-     * @param city the city
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    /**
-     * Sets sex.
-     *
-     * @param sex the sex
-     */
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    /**
-     * Sets age.
-     *
-     * @param age the age
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    /**
-     * Sets allow use current location.
-     *
-     * @param allow_use_current_location the allow use current location
-     */
-    public void setAllow_use_current_location(boolean allow_use_current_location) {
-        this.allow_use_current_location = allow_use_current_location;
-    }
-
-    /**
-     * Sets ads source.
-     *
-     * @param ads_source the ads source
-     */
-    public void setAds_source(String ads_source) {
-        this.ads_source = ads_source;
-    }
-
-    /**
-     * Sets interests.
-     *
-     * @param interests the interests
-     */
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-
-    /**
-     * Sets allowed receive push.
-     *
-     * @param allowed_receive_push the allowed receive push
-     */
-    public void setAllowed_receive_push(boolean allowed_receive_push) {
-        this.allowed_receive_push = allowed_receive_push;
-    }
-
-    /**
      * Gets id.
      *
      * @return the id
@@ -333,12 +198,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets uniq app device id.
+     *
+     * @param uniqAppDeviceId the uniq app device id
+     */
+    public void setUniqAppDeviceId(long uniqAppDeviceId) {
+        this.uniqAppDeviceId = uniqAppDeviceId;
+    }
+
+    /**
      * Gets gcm token id.
      *
      * @return the gcm token id
      */
     public String getGcmTokenId() {
         return gcmTokenId;
+    }
+
+    /**
+     * Sets gcm token id.
+     *
+     * @param gcmTokenId the gcm token id
+     */
+    public void setGcmTokenId(String gcmTokenId) {
+        this.gcmTokenId = gcmTokenId;
     }
 
     /**
@@ -351,12 +234,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets phone.
+     *
+     * @param phone the phone
+     */
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    /**
      * Gets email.
      *
      * @return the email
      */
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -369,12 +270,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets latitude.
+     *
+     * @param latitude the latitude
+     */
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    /**
      * Gets longitude.
      *
      * @return the longitude
      */
     public Double getLongitude() {
         return longitude;
+    }
+
+    /**
+     * Sets longitude.
+     *
+     * @param longitude the longitude
+     */
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     /**
@@ -387,12 +306,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets fio.
+     *
+     * @param fio the region
+     */
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    /**
      * Gets region.
      *
      * @return the region
      */
     public String getRegion() {
         return region;
+    }
+
+    /**
+     * Sets region.
+     *
+     * @param region the region
+     */
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     /**
@@ -405,12 +342,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets city.
+     *
+     * @param city the city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
      * Gets sex.
      *
      * @return the sex
      */
     public int getSex() {
         return sex;
+    }
+
+    /**
+     * Sets sex.
+     *
+     * @param sex the sex
+     */
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
     /**
@@ -423,12 +378,30 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets age.
+     *
+     * @param age the age
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
      * Is allow use current location boolean.
      *
      * @return the boolean
      */
     public boolean isAllow_use_current_location() {
         return allow_use_current_location;
+    }
+
+    /**
+     * Sets allow use current location.
+     *
+     * @param allow_use_current_location the allow use current location
+     */
+    public void setAllow_use_current_location(boolean allow_use_current_location) {
+        this.allow_use_current_location = allow_use_current_location;
     }
 
     /**
@@ -441,6 +414,15 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets ads source.
+     *
+     * @param ads_source the ads source
+     */
+    public void setAds_source(String ads_source) {
+        this.ads_source = ads_source;
+    }
+
+    /**
      * Gets interests.
      *
      * @return the interests
@@ -450,11 +432,29 @@ class HyberCurrentUserDBModel implements Serializable {
     }
 
     /**
+     * Sets interests.
+     *
+     * @param interests the interests
+     */
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    /**
      * Is allowed receive push boolean.
      *
      * @return the boolean
      */
     public boolean isAllowed_receive_push() {
         return allowed_receive_push;
+    }
+
+    /**
+     * Sets allowed receive push.
+     *
+     * @param allowed_receive_push the allowed receive push
+     */
+    public void setAllowed_receive_push(boolean allowed_receive_push) {
+        this.allowed_receive_push = allowed_receive_push;
     }
 }
