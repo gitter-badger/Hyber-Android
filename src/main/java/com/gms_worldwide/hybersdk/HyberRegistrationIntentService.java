@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 public class HyberRegistrationIntentService extends IntentService {
 
-    private static final String TAG = "com.gms_worldwide.hybersdk.RegIntentService";
+    private static final String TAG = "com.gms_worldwide.hybersdk.HyberRegIntentService";
     private static final String[] TOPICS = {"global"};
 
     /**
