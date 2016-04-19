@@ -2,11 +2,12 @@
 <metadata>
   <groupId>com.gms_worldwide</groupId>
   <artifactId>hybersdk</artifactId>
+  <version>0.9.9-SNAPSHOT</version>
   <versioning>
-    <versions>
-      <version>0.9.8-SNAPSHOT</version>
-      <version>0.9.9-SNAPSHOT</version>
-    </versions>
+    <snapshot>
+      <timestamp>20160419.062136</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
     <lastUpdated>20160419062136</lastUpdated>
   </versioning>
 </metadata>
