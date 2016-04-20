@@ -1,4 +1,5 @@
 # Install the SDK
+[![License][license-svg]][license-link]
 
 To use, add this github repo as a repository:
 ```groovy
@@ -225,3 +226,6 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [GoogleDevelopersConsoleDashboard]: https://console.developers.google.com/home/dashboard
 [LICENSE]: LICENSE
 [issues]: /issues
+ 
+[license-svg]: https://img.shields.io/badge/license-MIT-lightgrey.svg
+[license-link]: https://github.com/ParsePlatform/Parse-SDK-Android/blob/master/LICENSE
