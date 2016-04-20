@@ -1,18 +1,14 @@
 branches:
   only:
     - master
+env:
+  matrix:
+    - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
 
 language: android
-sudo: false
 
 android:
   components:
     - build-tools-23.0.1
-    - android-22
-    - extra-android-support
-    - extra-android-m2repository
 
-cache:
-  directories:
-    - $HOME/.gradle
-    - $HOME/.m2/repository
+script: ./gradlew testReleaseUnitTest
