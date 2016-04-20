@@ -13,13 +13,6 @@ android:
     - extra-android-support
     - extra-android-m2repository
 
-before_install:
-    - pip install --user codecov
-
-after_success:
-  - codecov
-  - ./scripts/publish_snapshot.sh
-
 cache:
   directories:
     - $HOME/.gradle
