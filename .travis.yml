@@ -16,9 +16,6 @@ android:
 before_install:
     - pip install --user codecov
 
-script:
-  - ./gradlew clean testDebugUnitTest jacocoTestReport --info
-
 after_success:
   - codecov
   - ./scripts/publish_snapshot.sh
@@ -27,4 +24,3 @@ cache:
   directories:
     - $HOME/.gradle
     - $HOME/.m2/repository
-
