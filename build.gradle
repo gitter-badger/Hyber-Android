@@ -1,60 +1,23 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-version = "0.9.9-SNAPSHOT"
-
-def boolean isReleaseBuild() {
-    return !version.toString().contains("SNAPSHOT")
-}
-
-android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
-
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 25
-        versionName version.toString()
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-// To publish to maven local execute "gradle clean build publishToMavenLocal"
-android.libraryVariants
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifact "build/outputs/aar/hybersdk-release.aar"
-            artifactId = "hybersdk"
-            groupId = "com.gms_worldwide"
-            version = version.toString()
-        }
-    }
-
+buildscript {
     repositories {
-        maven {
-            url isReleaseBuild() ?
-                    "file://${project.buildDir}/../releases" :
-                    "file://${project.buildDir}/../snapshots"
-        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
-    compile files('libs/ormlite-android-4.49-SNAPSHOT.jar')
-    compile files('libs/ormlite-core-4.49-SNAPSHOT.jar')
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
