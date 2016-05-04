@@ -11,7 +11,14 @@ android:
   components:
     - build-tools-23.0.3
     - extra-google-m2repository
-    - extra-android-m2repository
     - addon-google_apis-google-23
+    - extra-android-support
+    - extra-android-m2repository
 
-script: gradle build testReleaseUnitTest
+script:
+  - ./gradlew clean testDebugUnitTest
+
+cache:
+  directories:
+    - $HOME/.gradle
+    - $HOME/.m2/repository

@@ -1,4 +1,5 @@
 # Install the SDK
+[![Build Status][build-status-svg]][build-status-link]
 [![License][license-svg]][license-link]
 
 To use, add this github repo as a repository:
@@ -227,5 +228,7 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [LICENSE]: LICENSE
 [issues]: /issues
  
+[build-status-svg]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android.svg?branch=master
+[build-status-link]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android
 [license-svg]: https://img.shields.io/badge/license-MIT-lightgrey.svg
 [license-link]: https://github.com/ParsePlatform/Parse-SDK-Android/blob/master/LICENSE
