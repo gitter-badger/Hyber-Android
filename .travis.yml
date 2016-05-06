@@ -14,12 +14,6 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
 
-before_script:
-    # Create and start emulator
-    - emulator -avd test -no-skin -no-audio -no-window &
-    - adb wait-for-device
-    - adb shell input keyevent 82 &
-
 script: ./gradlew connectedAndroidTest
 
 cache:
