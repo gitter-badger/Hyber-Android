@@ -2,11 +2,14 @@
     package="com.gms_worldwide.androidboxappsdk">
 
     <application
+        android:name=".init.AppController"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/main_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".init.SplashActivity"/>
 
     </application>
 
