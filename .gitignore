@@ -6,9 +6,6 @@ build/
 .idea
 *.iml
 
-### Android Patch ###
-libs/
-
 ### Android template
 
 # Gradle files
