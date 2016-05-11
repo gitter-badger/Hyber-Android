@@ -1,6 +1,7 @@
 # Install the SDK
 [![Build Status][build-status-svg]][build-status-link]
 [![License][license-svg]][license-link]
+[![Downloads][downloads-all-releases]][downloads-all-releases]
 
 To use, add this github repo as a repository:
 ```groovy
@@ -214,10 +215,6 @@ That can be found in the [Google Developers Console Dashboard][GoogleDevelopersC
 
 For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 
-### License
-
-[MIT][LICENSE]
-
 [GlobalMessageServices]: http://www.gms-worldwide.com/en/kontakty.html
 [GoogleDevelopersConsoleHelp]: https://support.google.com/cloud/answer/6158853
 [GoogleServicesConsole]: https://developers.google.com/mobile/add
@@ -229,3 +226,5 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [build-status-link]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android
 [license-svg]: https://img.shields.io/badge/license-MIT-lightgrey.svg
 [license-link]: https://github.com/ParsePlatform/Parse-SDK-Android/blob/master/LICENSE
+
+[downloads-all-releases]: https://img.shields.io/github/downloads/atom/atom/total.svg
