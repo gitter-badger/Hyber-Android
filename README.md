@@ -2,6 +2,7 @@
 [![Build Status][build-status-svg]][build-status-link]
 [![License][license-svg]][license-link]
 [![Downloads][downloads-all-releases]][downloads-all-releases]
+[![Coverage Status](https://coveralls.io/repos/github/GlobalMessageServicesAG/Hyber-Android/badge.svg?branch=master)](https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master)
 
 To use, add this github repo as a repository:
 ```groovy
