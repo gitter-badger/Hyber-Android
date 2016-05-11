@@ -9,11 +9,11 @@ def boolean isReleaseBuild() {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 25
         versionName version.toString()
     }
