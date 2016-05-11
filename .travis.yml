@@ -3,10 +3,6 @@ branches:
     - master
 language: android
 jdk: oraclejdk8
-env:
-  global:
-    - ANDROID_TARGET=android-15
-    - ANDROID_ABI=armeabi-v7a
 
 android:
   components:
@@ -17,7 +13,6 @@ android:
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 
 script:
     - ./gradlew build jacocoTestReport assembleAndroidTest

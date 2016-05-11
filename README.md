@@ -1,8 +1,7 @@
 # Install the SDK
 [![Build Status][build-status-svg]][build-status-link]
 [![License][license-svg]][license-link]
-[![Coverage Status]]
-(https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master)
+[![Coverage Status][coverage-svg]][coverage-status-link]
 
 To use, add this github repo as a repository:
 ```groovy
@@ -227,3 +226,6 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [build-status-link]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android
 [license-svg]: https://img.shields.io/badge/license-MIT-lightgrey.svg
 [license-link]: https://github.com/ParsePlatform/Parse-SDK-Android/blob/master/LICENSE
+
+[coverage-status-link]: https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master
+[coverage-svg]: https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master/badge.svg
