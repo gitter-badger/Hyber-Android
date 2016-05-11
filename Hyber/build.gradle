@@ -9,6 +9,11 @@ def boolean isReleaseBuild() {
 }
 
 android {
+
+    lintOptions {
+        abortOnError false
+    }
+
     compileSdkVersion configCompileSdkVersion
     buildToolsVersion configBuildToolsVersion
 
