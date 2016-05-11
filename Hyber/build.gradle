@@ -1,10 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
+apply plugin: 'coveralls'
+apply plugin: 'jacoco'
 
 version = "0.9.9-SNAPSHOT"
 
 def boolean isReleaseBuild() {
     return !version.toString().contains("SNAPSHOT")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }
 
 android {
