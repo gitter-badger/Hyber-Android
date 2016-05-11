@@ -203,11 +203,11 @@ public class HyberUserHelper {
      * @param phone the phone
      * @param email the email
      * @return if user logged in, your retrieve current user profile model.
-     * @throws NoSuchFieldException the no such field exception
+     * @throws IllegalArgumentException the no such field exception
      */
-    public Observable<HyberUserProfileModel> loginUser(long phone, String email) throws NoSuchFieldException {
+    public Observable<HyberUserProfileModel> loginUser(long phone, String email) throws IllegalArgumentException {
         if (phone == 0 && TextUtils.isEmpty(email)) {
-            new NoSuchFieldException();
+            throw new IllegalArgumentException();
         }
         return HyberPlugins.get().restClient()
                 .registrationObservable(phone, email, HyberPlugins.get().getLastKownGcmID())

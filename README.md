@@ -5,15 +5,15 @@
 To use, add this github repo as a repository:
 ```groovy
     repositories {
-        maven {
-            url 'https://raw.github.com/GlobalMessageServicesAG/Hyber-Android/master/releases/'
-        }
+        maven { url 'https://raw.github.com/GlobalMessageServicesAG/Hyber-Android/master/Hyber/releases/' }
+        //For snapshot version add next line
+        //maven { url 'https://raw.github.com/GlobalMessageServicesAG/Hyber-Android/master/Hyber/snapshots/' }
     }
 ```
 
 Then add the next dependencies to project:
 ```groovy
-    compile 'com.gms_worldwide:hybersdk:0.9.8'
+    compile 'com.gms_worldwide:hybersdk:0.9.9-SNAPSHOT'
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
 ```
 
@@ -28,9 +28,6 @@ Add the next lines for Rx compatibility:
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex:rxjava:1.1.3'
 ```
-
-* RxAndroid: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxandroid'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxandroid.svg'></a>
-* RxJava: <a href='http://search.maven.org/#search%7Cga%7C1%7Crxjava'><img src='http://img.shields.io/maven-central/v/io.reactivex/rxjava.svg'></a>
 
 # Connect your app to Hyber
 
