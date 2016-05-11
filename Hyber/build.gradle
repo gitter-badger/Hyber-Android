@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-apply plugin: 'coveralls'
-apply plugin: 'jacoco'
+apply plugin: 'jacoco-android'
+apply plugin: 'com.github.kt3k.coveralls'
 
 version = "0.9.9-SNAPSHOT"
 

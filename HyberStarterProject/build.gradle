@@ -10,8 +10,8 @@ buildscript {
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'coveralls'
-apply plugin: 'jacoco'
+apply plugin: 'jacoco-android'
+apply plugin: 'com.github.kt3k.coveralls'
 
 android {
     compileSdkVersion 23
