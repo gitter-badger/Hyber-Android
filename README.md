@@ -1,6 +1,6 @@
 # Install the SDK
 [![Build Status][build-status-svg]][build-status-link]
-[![codecov.io][codecov-svg]][codecove-link]
+[![codecov.io][codecov-svg]][codecov-link]
 [![Coverage Status][coverage-svg]][coverage-status-link]
 [![License][license-svg]][license-link]
 
