@@ -1,4 +1,6 @@
 # Install the SDK
+
+[![Join the chat at https://gitter.im/GlobalMessageServicesAG/Hyber-Android](https://badges.gitter.im/GlobalMessageServicesAG/Hyber-Android.svg)](https://gitter.im/GlobalMessageServicesAG/Hyber-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status][build-status-svg]][build-status-link]
 [![codecov.io][codecov-svg]][codecov-link]
 [![Coverage Status][coverage-svg]][coverage-status-link]
