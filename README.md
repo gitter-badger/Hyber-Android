@@ -1,6 +1,6 @@
 # Install the SDK
 [![Build Status][build-status-svg]][build-status-link]
-[![codecov.io][codecov-svg]][codecove-link]
+[![codecov.io][codecov-svg]][codecov-link]
 [![Coverage Status][coverage-svg]][coverage-status-link]
 [![License][license-svg]][license-link]
 
@@ -226,8 +226,8 @@ For bugs, feature requests, and discussion please use [GitHub Issues][issues].
 [build-status-svg]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android.svg?branch=master
 [build-status-link]: https://travis-ci.org/GlobalMessageServicesAG/Hyber-Android
 
-[codecov-svg]: https://codecov.io/github/codecov/example-android/coverage.svg?branch=master
-[codecov-link]: https://codecov.io/github/codecov/example-android?branch=master
+[codecov-svg]: https://codecov.io/gh/GlobalMessageServicesAG/Hyber-Android/branch/master/graph/badge.svg
+[codecov-link]: https://codecov.io/gh/GlobalMessageServicesAG/Hyber-Android
 
 [coverage-svg]: https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master/badge.svg
 [coverage-status-link]: https://coveralls.io/github/GlobalMessageServicesAG/Hyber-Android?branch=master
